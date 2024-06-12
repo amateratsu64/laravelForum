@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+
+class UserController extends Controller
+{
+    
+
+    public function listALLUsers(){
+    //logica
+    return view('user.listALLUser');   
+    }
+
+    public function Create_user(){
+        return view('user.Create_user');
+    }
+    public function List_user(Request $request , $id){
+       //procurar o usuario no banco
+
+       $user = User::where('id' , $id)->first();
+        return view('user.profile',['user' => $user]);
+    }
+
+    public function Update_user(Request $request , $id){
+        //procurar o usuario no banco
+ 
+        $user = User::where('id' , $id)->first();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password != ''){
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+         return redirect()
+                ->route('List_user' , [$user->id])
+                ->with('message' , 'atualizado com sucesso');
+    }
+
+    public function Delete_user(Request $request , $id){
+        //procurar o usuario no banco
+ 
+        User::where('id' , $id)->delete();
+         return redirect()
+                ->route('List_user' , [$user->id])
+                ->with('message' , 'atualizado com sucesso');
+    }
+    public function edit_User_id(){
+
+    }
+    public function User_id_delet(){
+    
+    }
+    public function register_user(Request $request){
+        if ($request->method() === 'GET'){
+            return view('user.register');
+            }else{
+
+                $request->validate([
+                    'name' => 'required|string|max:255',
+                    'email' => 'required|string|max:255|unique:users',
+                    'password' => 'required|string|min:8'
+                ]);
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+            
+                Auth::login($user);
+
+                return redirect()->route('listALLUsers');
+            
+            }
+    }
+
+    
+}
+
