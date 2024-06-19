@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página Inicial</title>
+    <title>Página Inicial</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,14 +12,13 @@
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: #E0FFFF;
             padding: 20px 0;
             text-align: center;
         }
 
         nav {
-            background-color: #444;
+            background-color:#7B68EE;
             padding: 10px 0;
             text-align: center;
         }
@@ -48,7 +47,7 @@
         }
 
         footer {
-            background-color: #333;
+            background-color:#7B68EE ;
             color: #fff;
             padding: 10px 0;
             text-align: center;
@@ -60,13 +59,11 @@
 </head>
 <body>
     <header>
-        <h1> @yield('header')</h1>
+        <h1>pagina inicial</h1>
     </header>
 
     <nav>
-        @yield('content')
-        <a href="#">Página Inicial</a>
-        <a href="#">Sobre</a>
+        <a href="#">Listar usuarios</a>
         <a href="#">Serviços</a>
         <a href="#">Contato</a>
 
@@ -82,7 +79,7 @@
     
 
     <footer>
-        <p>&copy; 2024 Meu Site. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Direito autoral matheus peixoto</p>
     </footer>
 </body>
 </html>
