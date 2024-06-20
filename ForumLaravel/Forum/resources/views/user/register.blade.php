@@ -1,88 +1,78 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f1f1f1;
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0; 
+            background: linear-gradient(#7B68EE, #E0FFFF); 
+        }
+		imput[type=text],[type=email],[type=password],[type=password_confirmation]{
+			width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+			
 		}
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+        }
 
-		.form-container {
-			width: 300px;
-			background-color: #fff;
-			padding: 20px;
-			border: 1px solid #ddd;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			margin: 40px auto;
-		}
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-		.form-title {
-			text-align: center;
-			margin-bottom: 20px;
-		}
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-		.input-field {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-		}
-
-		.input-field:focus {
-			border-color: #aaa;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
-
-		.login-btn {
-			width: 100%;
-			padding: 10px;
-			background-color: #4CAF50;
-			color: #fff;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		.login-btn:hover {
-			background-color: #3e8e41;
-		}
-
-		.forgot-password {
-			text-align: center;
-			margin-top: 20px;
-		}
-
-		.forgot-password a {
-			color: #4CAF50;
-			text-decoration: none;
-		}
-
-		.forgot-password a:hover {
-			color: #3e8e41;
-		}
-	</style>
+        .login-btn {
+            width: 85%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: blak;
+			background: linear-gradient(#f4f4f4, #E0FFFF);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+			transition: background 0.3s ease;
+        }
+    </style>
 </head>
 <body>
-	<div class="form-container">
-		<h2 class="form-title">registro</h2>
-		<form action="{{route('register')}}" method="post">
-		@csrf 
-			<label for="name" class="form-label">name</label>
-			<input type="text" class="input-field" name="name" value="{{old('name')}}" required>
-			@error('name') <spam>{{$message}}</spam> @enderror
-			<label for="email" class="form-label">email</label>
-			<input type="email" class="input-field" name="email" value="{{old('email')}}"required>
-			@error('email') <spam>{{$message}}</spam> @enderror
-			<label for="passoword" class="form-label">password</label>
-			<input type="password" class="input-field" name="password" required>
-			@error('name') <spam>{{$message}}</spam> @enderror
-			<button class="login-btn">registar</button>
-			<p class="forgot-password">Forgot <a href="#">password?</a></p>
-		</form>
-	</div>
+    <div class="form-container">
+        <h2 class="form-title">registro</h2>
+        <form action="{{ route('register') }}" method="post">
+            @csrf 
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="input-field" name="name" value="{{ old('name') }}" required>
+            @error('name') <span>{{ $message }}</span> @enderror
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="input-field" name="email" value="{{ old('email') }}" required>
+            @error('email') <span>{{ $message }}</span> @enderror
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="input-field" name="password" required>
+            @error('password') <span>{{ $message }}</span> @enderror
+			<label for="password" class="form-label">Confirmar Senha</label>
+            <input type="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirme a senha" required>
+            <button class="login-btn">Registrar</button>
+        </form>
+    </div>
 </body>
 </html>

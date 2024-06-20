@@ -20,6 +20,7 @@ Route::match (['get','post'],'/login',[Authcontroler::class,'login_user'])->name
 
 Route::match (['get','post'],'/register',[UserController::class,'register_user'])->name('register');
 
+Route::get('',[UserController::class, 'menu_inicial'])->name('inicial');
 
 Route::get('/logout',[Authcontroler::class, 'logout_user'])->name('logout');
 
@@ -27,7 +28,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user',[UserController::class ,'listALLUsers']) ->name('listALLUsers');
 
-    Route::get('/user/create',[UserController::class ,'Create_user']) ->name('Create_user');
     Route::get('/user/{id}',[UserController::class, 'List_user'])->name('List_user');
     Route::put('/user/{id}/update',[UserController::class, 'Update_user'])->name('Update_user');
     Route::delete('/user/{id}/delete',[UserController::class, 'Delete_user'])->name('Delete_user');

@@ -16,9 +16,8 @@ class UserController extends Controller
     //logica
     return view('user.listALLUser');   
     }
-
-    public function Create_user(){
-        return view('user.Create_user');
+    public function menu_inicial(){
+        return view('inicial');
     }
     public function List_user(Request $request , $id){
        //procurar o usuario no banco
@@ -28,7 +27,7 @@ class UserController extends Controller
     }
 
     public function Update_user(Request $request , $id){
-        //procurar o usuario no banco
+
  
         $user = User::where('id' , $id)->first();
 
@@ -43,9 +42,7 @@ class UserController extends Controller
                 ->with('message' , 'atualizado com sucesso');
     }
 
-    public function Delete_user(Request $request , $id){
-        //procurar o usuario no banco
- 
+    public function Delete_user(Request $request , $id){ 
         User::where('id' , $id)->delete();
          return redirect()
                 ->route('List_user' , [$user->id])
@@ -65,17 +62,18 @@ class UserController extends Controller
                 $request->validate([
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|max:255|unique:users',
-                    'password' => 'required|string|min:8'
+                    'password' => 'required|string|min:8|confirmed'
                 ]);
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                 ]);
-            
+
                 Auth::login($user);
 
-                return redirect()->route('listALLUsers');
+                return redirect()->route('listALLUsers')
+                                 ->with('success', 'Registro realizado com sucesso.');
             
             }
     }
