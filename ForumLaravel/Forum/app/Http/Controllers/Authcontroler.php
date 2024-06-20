@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Suport\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class Authcontroler extends Controller
 {
@@ -17,11 +17,10 @@ class Authcontroler extends Controller
             ]);
             if (Auth::attemp($credentials)) {
                 return redirect() 
-                ->route("/user")
+                ->route("")
                 ->with("succes" , "login feito com sucesso");
             }
-            return back()->witherros(["email"=> "credenciais erradas.",
-            ])->wuthInput(); 
+            return back()->witherros(["email"=> "credenciais erradas.",])->wuthInput(); 
             
 
         }
@@ -30,7 +29,7 @@ class Authcontroler extends Controller
         Auth::logout();
         
         return redirect()
-        ->route('listALLUsers')
+        ->route('inicio')
         ->with('succes' , 'logout realizado com sucesso');
 
     }

@@ -38,14 +38,14 @@ class UserController extends Controller
         }
         $user->save();
          return redirect()
-                ->route('List_user' , [$user->id])
+                ->route('listALLUsers' , [$user->id])
                 ->with('message' , 'atualizado com sucesso');
     }
 
     public function Delete_user(Request $request , $id){ 
         User::where('id' , $id)->delete();
          return redirect()
-                ->route('List_user' , [$user->id])
+                ->route('user.listALLUser' , [$user->id])
                 ->with('message' , 'atualizado com sucesso');
     }
     public function edit_User_id(){
@@ -72,7 +72,7 @@ class UserController extends Controller
 
                 Auth::login($user);
 
-                return redirect()->route('listALLUsers')
+                return redirect()->route('inicial')
                                  ->with('success', 'Registro realizado com sucesso.');
             
             }

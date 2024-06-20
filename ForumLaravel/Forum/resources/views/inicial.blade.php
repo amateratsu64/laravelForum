@@ -64,7 +64,7 @@
     </header>
 
     <nav>
-        <a href="{{url('/register')}}">Listar usuarios</a>
+        <a href="{{url('/login')}}">Listar usuarios</a>
         <a href="#">Serviços</a>
         <a href="#">Contato</a>
 

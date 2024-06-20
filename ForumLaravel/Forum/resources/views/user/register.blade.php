@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>pagin de registro</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,8 +50,6 @@
 			background: linear-gradient(#f4f4f4, #E0FFFF);
             border: none;
             border-radius: 5px;
-            cursor: pointer;
-			transition: background 0.3s ease;
         }
     </style>
 </head>
@@ -61,17 +59,18 @@
         <form action="{{ route('register') }}" method="post">
             @csrf 
             <label for="name" class="form-label">Nome</label>
-            <input type="text" class="input-field" name="name" value="{{ old('name') }}" required>
+            <input type="text" class="input-field" name="name" value="{{ old('name') }}" placeholder="Coloque seu nome" required>
             @error('name') <span>{{ $message }}</span> @enderror
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="input-field" name="email" value="{{ old('email') }}" required>
+            <input type="email" class="input-field" name="email" value="{{ old('email') }}" placeholder="Coloque seu Email" required>
             @error('email') <span>{{ $message }}</span> @enderror
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="input-field" name="password" required>
+            <input type="password" class="input-field" name="password"  placeholder="Coloque sua senha" required>
             @error('password') <span>{{ $message }}</span> @enderror
 			<label for="password" class="form-label">Confirmar Senha</label>
             <input type="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirme a senha" required>
             <button class="login-btn">Registrar</button>
+            <p class="forgot-password">Já possui conta<a  href="{{url('/login')}}">Clique aqui</a></p>
         </form>
     </div>
 </body>

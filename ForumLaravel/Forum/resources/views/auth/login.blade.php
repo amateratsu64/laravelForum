@@ -3,66 +3,54 @@
 <head>
 	<title>Login Page</title>
 	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f1f1f1;
+		 body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0; 
+            background: linear-gradient(#7B68EE, #E0FFFF); 
+        }
+		imput[type=text],[type=email],[type=password]{
+			width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+			
 		}
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+        }
 
-		.form-container {
-			width: 300px;
-			background-color: #fff;
-			padding: 20px;
-			border: 1px solid #ddd;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			margin: 40px auto;
-		}
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-		.form-title {
-			text-align: center;
-			margin-bottom: 20px;
-		}	
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-		.input-field {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-		}
-
-		.input-field:focus {
-			border-color: #aaa;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
-
-		.login-btn {
-			width: 100%;
-			padding: 10px;
-			background-color: #4CAF50;
-			color: #fff;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		.login-btn:hover {
-			background-color: #3e8e41;
-		}
-
-		.forgot-password {
-			text-align: center;
-			margin-top: 20px;
-		}
-
-		.forgot-password a {
-			color: #4CAF50;
-			text-decoration: none;
-		}
-
-		.forgot-password a:hover {
-			color: #3e8e41;
-		}
+        .login-btn {
+            width: 85%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: blak;
+			background: linear-gradient(#f4f4f4, #E0FFFF);
+            border: none;
+            border-radius: 5px;
+        }
 	</style>
 </head>
 <body>
@@ -70,15 +58,14 @@
 		<h2 class="form-title">Login</h2>
 		<form action="{{route('login')}}" method="post">
 			@csrf
-			<label for="email" class="form-label">email</label>
-			<input type="email" class="input-field" name="Username" 
-						value= "{{old('email')}}"required>
+			<label for="email" class="form-label">Email</label>
+			<input type="email" class="input-field" name="Username" value= "{{old('email')}}"  placeholder="Coloque seu Email"required>
 			@error('email') <spam>{{('message')}}</spam> @enderror
-			<label for="passoword" class="form-label">passoword</label>
-			<input type="password" class="input-field" name="Password" required>
+			<label for="passoword" class="form-label">Passoword</label>
+			<input type="password" class="input-field" name="Password"  placeholder="Coloque sua senha" required>
 			@error('name') <spam>{{('message')}}</spam> @enderror
 			<button class="login-btn">Login</button>
-			<p class="forgot-password">Forgot <a href="#">password?</a></p>
+			<p class="forgot-password">Não possui conta<a  href="{{url('/register')}}">Clique aqui</a></p>
 		</form>
 	</div>
 </body>
