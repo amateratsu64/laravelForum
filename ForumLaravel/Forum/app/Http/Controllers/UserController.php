@@ -45,14 +45,11 @@ class UserController extends Controller
     public function Delete_user(Request $request , $id){ 
         User::where('id' , $id)->delete();
          return redirect()
-                ->route('user.listALLUser' , [$user->id])
+                ->route('inicial')
                 ->with('message' , 'atualizado com sucesso');
     }
     public function edit_User_id(){
 
-    }
-    public function User_id_delet(){
-    
     }
     public function register_user(Request $request){
         if ($request->method() === 'GET'){

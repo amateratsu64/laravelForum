@@ -56,17 +56,19 @@
 <body>
 	<div class="form-container">
 		<h2 class="form-title">Login</h2>
-		<form action="{{route('login')}}" method="post">
+		<form action="{{ route('login') }}" method="post">
 			@csrf
 			<label for="email" class="form-label">Email</label>
-			<input type="email" class="input-field" name="Username" value= "{{old('email')}}"  placeholder="Coloque seu Email"required>
-			@error('email') <spam>{{('message')}}</spam> @enderror
-			<label for="passoword" class="form-label">Passoword</label>
-			<input type="password" class="input-field" name="Password"  placeholder="Coloque sua senha" required>
-			@error('name') <spam>{{('message')}}</spam> @enderror
-			<button class="login-btn">Login</button>
+			<input type="email" id="email" class="input-field" name="email" value= "{{old('email')}}"  placeholder="Coloque seu Email"required>
+			@error('email') <spam>{{($message)}}</spam> @enderror
+			<label for="password" class="form-label">Passoword</label>
+			<input type="password" id="password" class="input-field" name="password"  placeholder="Coloque sua senha" required>
+			@error('password') <spam>{{($message)}}</spam> @enderror
+			<button class="login-btn" type="submit" >Login</button>
+           
 			<p class="forgot-password">Não possui conta<a  href="{{url('/register')}}">Clique aqui</a></p>
 		</form>
+        
 	</div>
 </body>
 </html>

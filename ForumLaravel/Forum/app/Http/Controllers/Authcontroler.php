@@ -12,15 +12,15 @@ class Authcontroler extends Controller
         return view('auth.login');
         }else{
           $credentials = $request->validate([
-                'email' => 'required|string|max:255|unique:users',
-                'passoword' => 'required|string|min:8|confirmed'
+                'email' => 'required|string|max:255',
+                'password' => 'required|string'
             ]);
-            if (Auth::attemp($credentials)) {
+            if (Auth::attempt($credentials)) {
                 return redirect() 
-                ->route("")
+                ->route('inicial')
                 ->with("succes" , "login feito com sucesso");
             }
-            return back()->witherros(["email"=> "credenciais erradas.",])->wuthInput(); 
+            return back()->witherros(["email"=> "credenciais erradas.",])->withInput(); 
             
 
         }
@@ -29,7 +29,7 @@ class Authcontroler extends Controller
         Auth::logout();
         
         return redirect()
-        ->route('inicio')
+        ->route('inicial')
         ->with('succes' , 'logout realizado com sucesso');
 
     }

@@ -68,7 +68,7 @@
             <input type="password" class="input-field" name="password"  placeholder="Coloque sua senha" required>
             @error('password') <span>{{ $message }}</span> @enderror
 			<label for="password" class="form-label">Confirmar Senha</label>
-            <input type="password_confirmation" id="password_confirmation" name="password_confirmation" placeholder="Confirme a senha" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirme a senha" required>
             <button class="login-btn">Registrar</button>
             <p class="forgot-password">Já possui conta<a  href="{{url('/login')}}">Clique aqui</a></p>
         </form>
