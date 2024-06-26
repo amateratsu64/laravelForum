@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class PostControler extends Controller
 {
     
-    public function criar_post(){
-
+    public function Listll_post(){
+        return view('post\Listll_post');
     }
     //
 }

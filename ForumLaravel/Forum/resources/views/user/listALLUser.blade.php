@@ -98,12 +98,12 @@
     </header>
 
     <nav>
-        <a href="#">Listar Usuários</a>
-        <a href="#">Serviços</a>
+        <a href="{{ url('/user') }}">Listar Usuários</a>
+        <a href="{{ url('/post') }}">Serviços</a>
         <a href="#">Contato</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
-                <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i></a>
+                <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> sair</a>
         @else
             <a href="{{ route('login') }}" class="login-icon"><i class="fas fa-sign-in-alt"></i> Login</a>
         @endif

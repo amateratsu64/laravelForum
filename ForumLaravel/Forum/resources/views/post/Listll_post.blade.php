@@ -39,6 +39,19 @@
             margin: 0 15px;
             font-weight: bold;
         }
+        
+        .create-post-button {
+            display: block;
+            width: 100px;
+            margin: 20px auto 0 20px;
+            padding: 10px 20px;
+            background-color: #7B68EE;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
 
         .container {
             max-width: 800px;
@@ -50,7 +63,7 @@
         }
 
         .main-content {
-            padding: 20px;
+            padding: 8px;
         }
 
         footer {
@@ -62,6 +75,11 @@
             bottom: 0;
             width: 100%;
         }
+
+        .comments {
+            display: flex; 
+            font-family: Arial;  
+        }
     </style>
 </head>
 <body>
@@ -71,25 +89,29 @@
 
     <nav>
         <a href="{{ url('/user') }}">Listar usuários</a>
-        <a href="{{ url('/post') }}">Postagem</a>
+        <a href="{{ url('/post') }}">Serviços</a>
         <a href="#">Contato</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
-                <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> sair</a>
+            <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> sair</a>
         @else
             <a href="{{ route('login') }}" class="login-icon"><i class="fas fa-sign-in-alt"></i> Login</a>
         @endif
     </nav>
 
+    <a href="{{ url('/create_post') }}" class="create-post-button">Criar Post</a>
+    
     <div class="container">
         <div class="main-content">
-            <h2>Bem-vindo ao Meu Site!</h2>
-            @if (Auth::check())
-                <p>Olá, {{ Auth::user()->name }}! Bem-vindo ao meu saite</p>
-            @else
-                <p>faça logui no saite para consequir assesar os conteudos</p>
-            @endif
-        </div>
+            <!-- Conteúdo principal da página -->
+             <h3> akalnd</h3>
+             
+             <p>como que sei la faz para passar da faze do bouser no mario </p>
+             
+             <div class="comments">
+                <p><i class="fa-regular fa-thumbs-up"></i>20</p><p><i class="fa-regular fa-thumbs-down"></i>5</p><p><i class="fa-solid fa-comments"></i>15</p> 
+            </div>        
+            </div>
     </div>
 
     <footer>
