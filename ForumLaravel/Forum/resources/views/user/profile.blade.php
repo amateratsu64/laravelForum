@@ -69,9 +69,9 @@
 			<input type="email" class="input-field" name="email" value="{{$user->email}}"required>
 			@error('email') <spam>{{($message)}}</spam> @enderror
 			<label for="password" class="form-label">password </label>
-			<input type="text" class="input-field" name="password" value="{{$user->password}}" required>
+			<input type="password" class="input-field" name="password" value="{{$user->password}}" required>
 			@error('password') <spam>{{($message)}}</spam> @enderror
-			<button class="login-btn"></button>
+			<button class="login-btn">atualizar</button>
 		</form>
 		<form action="{{route('Delete_user' , [$user->id])}}" method="post">
 		@csrf 

@@ -69,15 +69,6 @@
 
     </nav>
 
-    <div class="container">
-        <div class="main-content">
-            <h2>Bem-vindo ao Meu Site!</h2>
-            <p>Esta é a página inicial do meu site. Aqui você encontrará informações sobre nossos serviços, nossa empresa e como entrar em contato conosco.</p>
-        </div>
-    </div>
-
-    
-
     <footer>
         <p>&copy; 2024 Direito autoral matheus peixoto</p>
     </footer>

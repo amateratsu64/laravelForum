@@ -31,4 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/{id}',[UserController::class, 'List_user'])->name('List_user');
     Route::put('/user/{id}/update',[UserController::class, 'Update_user'])->name('Update_user');
     Route::delete('/user/{id}/delete',[UserController::class, 'Delete_user'])->name('Delete_user');
+    Route::get('/post',[UserController::class, 'Listarall_post'])->name('Listarall_post');
+    Route::get('/post/{id}',[UserController::class, 'List_post'])->name('List_post');
+    Route::get('/post/{id}/update',[UserController::class, 'Update_post'])->name('Update_post');
+    Route::delete('/post/{id}/delete',[UserController::class, 'Delete_post'])->name('Delete_post');
+    Route::match(['get', 'post'], '/create_post', [PostController::class, 'create_post'])->name('create_post');
+    Route::get(['/topics',UserController::class, 'Listarall_topics'])->name('Listarall_topics');
+    Route::get('/topics/{id}',[UserController::class, 'List_topics'])->name('List_topics');
+    Route::get('/topics/{id}/update',[UserController::class, 'Update_topics'])->name('Update_topics');
+    Route::delete('/topics/{id}/delete',[UserContrppoller::class, 'Delete_topics'])->name('Delete_topics');
+    Route::match(['get', 'post'], '/create_topics', [PostController::class, 'create_topics'])->name('create_');
+    
 });

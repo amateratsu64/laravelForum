@@ -12,9 +12,9 @@ class UserController extends Controller
 {
     
 
-    public function listALLUsers(){
-    //logica
-    return view('user.listALLUser');   
+    public function listALLUsers(Request $request){
+        $users = User::all();
+        return view('user\listALLUser', ['users' => $users]); 
     }
     public function menu_inicial(){
         return view('inicial');
@@ -38,7 +38,7 @@ class UserController extends Controller
         }
         $user->save();
          return redirect()
-                ->route('listALLUsers' , [$user->id])
+                ->route('listALLUsers')
                 ->with('message' , 'atualizado com sucesso');
     }
 
