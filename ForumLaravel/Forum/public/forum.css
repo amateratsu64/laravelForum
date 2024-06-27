@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #7B68EE, #E0FFFF);
+    height: 100vh;
+    color: #333;
+}
+
+header {
+    background-color: #7B68EE;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    background-color: #483D8B;
+    padding: 10px 0;
+    text-align: center;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+footer {
+    background-color: #7B68EE;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

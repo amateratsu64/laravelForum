@@ -12,4 +12,12 @@ class PostControler extends Controller
         return view('post\Listll_post');
     }
     //
+
+    public function create_post(){
+        return view('post\Create_post');
+    }
+    public function List_post(){
+        return view('post\Editar_post');
+    }
 }
+
