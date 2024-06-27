@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Página Inicial</title>
+    <title>Lista de Usuários</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+           font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, #7B68EE, #E0FFFF);
+
+            min-height: 100vh;
             color: #333;
         }
 
@@ -39,7 +41,7 @@
             font-weight: bold;
         }
 
-        .conteiner {
+        .container {
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
@@ -48,18 +50,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        .tabela {
+        .table-container {
             padding: 20px;
-        }
-
-        footer {
-            background-color: #7B68EE;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
 
         table {
@@ -90,27 +82,36 @@
         tr:hover {
             background-color: #ddd;
         }
+
+        footer {
+            background-color: #7B68EE;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1><a href="{{ route('logout') }}">lista de usuarios</a></h1>
+        <h1><a href="{{ route('logout') }}">Lista de Usuários</a></h1>
     </header>
 
     <nav>
         <a href="{{ url('/user') }}">Listar Usuários</a>
-        <a href="{{ url('/post') }}">Serviços</a>
-        <a href="#">Contato</a>
+        <a href="{{ url('/post') }}">Post</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
-                <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> sair</a>
+            <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> Sair</a>
         @else
             <a href="{{ route('login') }}" class="login-icon"><i class="fas fa-sign-in-alt"></i> Login</a>
         @endif
     </nav>
 
-    <div class="conteiner">
-        <div class="tabela">
+    <div class="container">
+        <div class="table-container">
             @foreach ($users as $user)
             <table>
                 <thead>
