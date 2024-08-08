@@ -49,52 +49,8 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .form-group input[type="text"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 150px;
-        }
-
-        .form-buttons {
-            text-align: right;
-        }
-
-        .form-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .form-buttons .btn-save {
-            background-color: #7B68EE;
-            color: white;
-            margin-right: 10px;
-        }
-
-        .form-buttons .btn-cancel {
-            background-color: #ccc;
-            color: #333;
+        .main-content {
+            padding: 20px;
         }
 
         footer {
@@ -115,27 +71,24 @@
 
     <nav>
         <a href="{{ url('/user') }}">Listar usuários</a>
-        <a href="{{ url('/post') }}">Post</a>
+        <a href="{{ url('/post') }}">Postagem</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
-            <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> sair</a>
+                <a href="{{ route('logout')}}"><i class="fas fa-sign-out-alt"></i> sair</a>
         @else
             <a href="{{ route('login') }}" class="login-icon"><i class="fas fa-sign-in-alt"></i> Login</a>
         @endif
     </nav>
 
     <div class="container">
-        <form action="" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="content">Conteúdo da Postagem:</label>
-                <textarea id="content" name="content" required></textarea>
-            </div>
-            <div class="form-buttons">
-                <button type="submit" class="btn-save">Salvar</button>
-                <button type="button" class="btn-cancel" onclick="window.location.href='{{ url('/post') }}'">Cancelar</button>
-            </div>
-        </form>
+        <div class="main-content">
+            <h2>Bem-vindo ao Meu Site!</h2>
+            @if (Auth::check())
+                <p>Olá, {{ Auth::user()->name }}! Bem-vindo ao meu saite</p>
+            @else
+                <p>faça logui no saite para consequir assesar os conteudos</p>
+            @endif
+        </div>
     </div>
 
     <footer>

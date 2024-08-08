@@ -43,5 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/topics/{id}/update',[UserController::class, 'Update_topics'])->name('Update_topics');
     Route::delete('/topics/{id}/delete',[UserContrppoller::class, 'Delete_topics'])->name('Delete_topics');
     Route::match(['get', 'post'], '/create_topics', [PostController::class, 'create_topics'])->name('create_');
-    
+    //tag
+    Route::get('/tag',[PostControler::class, 'Listll_tag'])->name('Listll_tag');
+    Route::get('/tag/list',[PostControler::class, 'List_tag'])->name('List_tag');
+    Route::get('/tag/{id}/update',[PostControler::class, 'Update_tag'])->name('Update_tag');
+    Route::delete('/tag/{id}/delete',[PostControler::class, 'Delete_post'])->name('Delete_tag');
 });
