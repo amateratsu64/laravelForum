@@ -33,15 +33,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/{id}',[UserController::class, 'List_user'])->name('List_user');
     Route::put('/user/{id}/update',[UserController::class, 'Update_user'])->name('Update_user');
     Route::delete('/user/{id}/delete',[UserController::class, 'Delete_user'])->name('Delete_user');
+    //post
     Route::get('/post',[PostControler::class, 'Listll_post'])->name('Listll_post');
     Route::get('/post/list',[PostControler::class, 'List_post'])->name('List_post');
     Route::get('/post/{id}/update',[PostControler::class, 'Update_post'])->name('Update_post');
     Route::delete('/post/{id}/delete',[PostControler::class, 'Delete_post'])->name('Delete_post');
     Route::match(['get', 'post'], '/create_post', [PostControler::class, 'create_post'])->name('create_post');
-    // Route::get('/topics',UserController::class, 'Listarall_topics')->name('Listarall_topics');
-    Route::get('/topics/{id}',[UserController::class, 'List_topics'])->name('List_topics');
-    Route::get('/topics/{id}/update',[UserController::class, 'Update_topics'])->name('Update_topics');
-    Route::delete('/topics/{id}/delete',[UserContrppoller::class, 'Delete_topics'])->name('Delete_topics');
-    Route::match(['get', 'post'], '/create_topics', [PostController::class, 'create_topics'])->name('create_');
-    
+    //Route::get('/topics',TopcControler::class, 'Listarall_topics')->name('Listarall_topics');
+    //topics
+    Route::get('/topics',[TopcControler::class, 'Listall_topics'])->name('Listall_topics');
+    Route::get('/topics/{id}',[TopcControler::class, 'List_topics'])->name('List_topics');
+    Route::get('/topics/{id}/update',[TopcControler::class, 'Update_topics'])->name('Update_topics');
+    Route::delete('/topics/{id}/delete',[TopcControler::class, 'Delete_topics'])->name('Delete_topics');
+    Route::match(['get', 'post'], '/create_topics', [TopcControler::class, 'create_topics'])->name('create_topics');
+    //tag
+    Route::get('/tag',[TagContrler::class, 'Listall_tag'])->name('Listall_tag');
+    Route::get('/tag/{id}',[TagContrler::class, 'List_tag'])->name('List_tag');
+    Route::get('/tag/{id}/update',[TagContrler::class, 'Update_tag'])->name('Update_tag');
+    Route::delete('/tag/{id}/delete',[TagContrler::class, 'Delete_tag'])->name('Delete_tag');
+    Route::match(['get', 'post'], '/create_topics', [TagContrler::class, 'create_topics'])->name('create_tag');
 });
