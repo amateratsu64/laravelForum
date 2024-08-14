@@ -41,7 +41,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 400px;
             margin: 40px auto;
             padding: 20px;
             background-color: #ffffff;
@@ -63,15 +63,15 @@
         .form-group input[type="text"],
         .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 5px; 
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px; 
         }
 
         .form-group textarea {
             resize: vertical;
-            height: 150px;
+            height: 100px; 
         }
 
         .form-buttons {
@@ -95,6 +95,12 @@
         .form-buttons .btn-cancel {
             background-color: #ccc;
             color: #333;
+            margin-right: 10px;
+        }
+
+        .form-buttons .btn-delete {
+            background-color: #FF4500;
+            color: white;
         }
 
         footer {
@@ -127,15 +133,15 @@
     </nav>
 
     <div class="container">
-        <form action="" method="post">
-            @csrf
+        <form >
             <div class="form-group">
-                <label for="content">Conteúdo da Postagem:</label>
-                <textarea id="content" name="content" required></textarea>
+                <label for="content">tag</label>
+                <textarea id="content" name="content" required>bugs</textarea>
             </div>
             <div class="form-buttons">
                 <button type="submit" class="btn-save">Salvar</button>
-                <button type="button" class="btn-cancel" onclick="window.location.href='{{ url('/post') }}'">Cancelar</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='{{ url('/tag') }}'">Cancelar</button>
+                <button type="button" class="btn-delete" onclick="if(confirm('Tem certeza que deseja excluir esta postagem?')){ document.getElementById('delete-form').submit(); }">Excluir</button>
             </div>
         </form>
     </div>

@@ -80,14 +80,22 @@
             font-weight: bold;
         }
 
-        .container {
-            flex: 1;
-            max-width: 800px;
-            margin: 0 auto;
+        .container-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
             padding: 20px;
+        }
+
+        .container {
+            flex: 1 1 calc(20% - 10px); 
+            max-width: calc(20% - 10px);
+            padding: 5px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 130px;
         }
 
         .main-content {
@@ -96,9 +104,7 @@
 
         .post {
             margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            padding: 10px;
             position: relative;
         }
 
@@ -142,6 +148,8 @@
             padding: 10px 0;
             text-align: center;
             width: 100%;
+            position: fixed;
+            bottom: 0;
         }
     </style>
 </head>
@@ -151,7 +159,7 @@
     </header>
 
     <nav>
-        <a href="{{ url('/user') }}">Listar usuários</a>
+    <a href="{{ url('/user') }}">Listar usuários</a>
         <a href="{{ url('/post') }}">Postagem</a>
         <a href="{{ url('/tag') }}">Tag</a>
         <a href="{{ url('/topics') }}">Topics</a>
@@ -170,41 +178,43 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-        <a href="{{ url('/create_post') }}" class="create-post-button">Criar Post</a>
+        <a href="{{ url('/create_post') }}" class="create-post-button">Criar topic</a>
     </div>
 
-    <div class="container">
-        <div class="main-content">
-            <div class="post">
-                <h3>adolf</h3>
-                <button class="edit-button"><a href="{{ url('/post/list') }}">Editar</a></button>
-                <p>Como que sei lá faz para passar da fase do Bowser no Mario?</p>
-                <div class="comments">
-                    <p><i class="fa-regular fa-thumbs-up"></i> 20</p>
-                    <p><i class="fa-regular fa-thumbs-down"></i> 5</p>
-                    <p><i class="fa-solid fa-comments"></i> 15</p> 
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="main-content">
+                <div class="post">
+                    <h3>adolf</h3>
+                    <button class="edit-button"><a href="{{ url('/topics/list') }}">Editar</a></button>
+                    <p>super mario bros</p>
                 </div>
             </div>
-
-            <div class="post">
-                <h3>matheus</h3>
-                <button class="edit-button">Editar</button>
-                <p>alquem sabe o konimi cod</p>
-                <div class="comments">
-                    <p><i class="fa-regular fa-thumbs-up"></i> 20</p>
-                    <p><i class="fa-regular fa-thumbs-down"></i> 5</p>
-                    <p><i class="fa-solid fa-comments"></i> 15</p> 
+        </div>
+        <div class="container">
+            <div class="main-content">
+                <div class="post">
+                    <h3>manoel</h3>
+                    <button class="edit-button">Editar</button>
+                    <p>super nitendo</p>
                 </div>
             </div>
-
-            <div class="post">
-                <h3>Título do Post</h3>
-                <button class="edit-button">Editar</button>
-                <p>como que abaixa os graficos </p>
-                <div class="comments">
-                    <p><i class="fa-regular fa-thumbs-up"></i> 20</p>
-                    <p><i class="fa-regular fa-thumbs-down"></i> 5</p>
-                    <p><i class="fa-solid fa-comments"></i> 15</p> 
+        </div>
+        <div class="container">
+            <div class="main-content">
+                <div class="post">
+                    <h3>renato</h3>
+                    <button class="edit-button">Editar</button>
+                    <p>link</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-content">
+                <div class="post">
+                    <h3>peixoto</h3>
+                    <button class="edit-button">Editar</button>
+                    <p>codigos e cheat</p>
                 </div>
             </div>
         </div>

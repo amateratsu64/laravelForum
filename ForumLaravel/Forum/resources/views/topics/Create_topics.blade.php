@@ -71,7 +71,7 @@
 
         .form-group textarea {
             resize: vertical;
-            height: 150px;
+            height: 80x;
         }
 
         .form-buttons {
@@ -114,7 +114,7 @@
     </header>
 
     <nav>
-    <a href="{{ url('/user') }}">Listar usuários</a>
+        <a href="{{ url('/user') }}">Listar usuários</a>
         <a href="{{ url('/post') }}">Postagem</a>
         <a href="{{ url('/tag') }}">Tag</a>
         <a href="{{ url('/topics') }}">Topics</a>
@@ -130,12 +130,12 @@
         <form action="" method="post">
             @csrf
             <div class="form-group">
-                <label for="content">Conteúdo da Postagem:</label>
+                <label for="content">nome do topic</label>
                 <textarea id="content" name="content" required></textarea>
             </div>
             <div class="form-buttons">
-                <button type="submit" class="btn-save">Salvar</button>
-                <button type="button" class="btn-cancel" onclick="window.location.href='{{ url('/post') }}'">Cancelar</button>
+                <button type="submit" class="btn-save">Criar</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='{{ url('/topics') }}'">Cancelar</button>
             </div>
         </form>
     </div>

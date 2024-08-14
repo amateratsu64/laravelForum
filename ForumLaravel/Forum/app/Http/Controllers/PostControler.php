@@ -11,7 +11,6 @@ class PostControler extends Controller
     public function Listll_post(){
         return view('post\Listll_post');
     }
-    //
 
     public function create_post(){
         return view('post\Create_post');
