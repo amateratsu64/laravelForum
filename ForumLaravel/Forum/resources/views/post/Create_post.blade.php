@@ -114,10 +114,15 @@
     </header>
 
     <nav>
+<<<<<<< HEAD
     <a href="{{ url('/user') }}">Listar usuários</a>
         <a href="{{ url('/post') }}">Postagem</a>
         <a href="{{ url('/tag') }}">Tag</a>
         <a href="{{ url('/topics') }}">Topics</a>
+=======
+        <a href="{{ url('/user') }}">Listar usuários</a>
+        <a href="{{ url('/post') }}">Post</a>
+>>>>>>> 878634ea7a1e82ef5a0c1800b63a3a4b3ac64e1e
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
             <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> sair</a>
