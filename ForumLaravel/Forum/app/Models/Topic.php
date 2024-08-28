@@ -19,10 +19,14 @@ class Topic extends Post
     {
         return $this->belongsTo(Category::class);
     }
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
     
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
            
 }

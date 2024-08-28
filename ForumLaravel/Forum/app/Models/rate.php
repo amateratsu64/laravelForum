@@ -15,12 +15,12 @@ class rate extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Post::class);
     }
     
     public function users()
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Post::class);
     }
 
 }

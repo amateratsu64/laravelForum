@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+abstract class Post extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Post extends Model
     
     public function rates()
     {
-        return $this->belongsTo(Post::class);
+        return $this->hasMany(Post::class);
     }
     
 }
