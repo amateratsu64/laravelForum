@@ -10,8 +10,7 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description'
+        'title'
     ];
 
     public function topics()

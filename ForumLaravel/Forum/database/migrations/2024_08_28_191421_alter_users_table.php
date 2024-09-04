@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::table('user', function (Blueprint $table)){
-            $table ->string('photo');
-            $table->enum('role',['user', 'moderador', 'admin'])->default('user');
-        }
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('photo')->nullable();
+            $table->enum('role', ['user', 'moderator', 'admin'])->default('user');
+        });
     }
 
     /**
@@ -26,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+            $table->dropColumn('photo');
+        });
     }
 };

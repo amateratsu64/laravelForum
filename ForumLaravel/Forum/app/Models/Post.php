@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 abstract class Post extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'photo'
+    ];
 
     public function user()
     {
