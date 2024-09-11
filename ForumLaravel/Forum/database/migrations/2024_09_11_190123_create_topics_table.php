@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('rate');
+        Schema::create('topics', function (Blueprint $table) {
+            $table->unsignedBigInteger('id')->primary();
+            $table->forengn('id')->references('id')->on('posts');
+            $table->string('title');
+            $table->text('description');
+            $table->boolean('status')->default(true);
             $table->timestamps();
-            $table->forengn('user_id')->references('id')->on('users');
-            $table->forengn('post_id')->references('id')->on('tposts');
-
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('topics');
     }
 };

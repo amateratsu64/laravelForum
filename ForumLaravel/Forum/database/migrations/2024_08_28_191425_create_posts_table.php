@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
+            $table->string('image');
             $table->timestamps();
+            $table->forengn('user_id')->con('users');
+
         });
     }
 
