@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->forengn('id')->references('id')->on('posts');
+            $table->foreign('id')->references('id')->on('posts');
             $table->text('content');
+            $table->foreign('topic_id')->references('id')->on('topics');
             $table->timestamps();
-            $table->forengn('topic_id')->references('id')->on('topics');
         });
     }
+
 
     /**
      * Reverse the migrations.

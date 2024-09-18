@@ -11,17 +11,19 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+      public function up()
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
-            $table->forengn('id')->references('id')->on('posts');
+            $table->foreign('id')->references('id')->on('posts');
             $table->string('title');
             $table->text('description');
             $table->boolean('status')->default(true);
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

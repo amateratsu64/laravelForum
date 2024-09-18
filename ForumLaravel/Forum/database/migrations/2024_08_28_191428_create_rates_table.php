@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('rate');
             $table->timestamps();
             $table->forengn('user_id')->references('id')->on('users');
-            $table->forengn('post_id')->references('id')->on('tposts');
+            $table->forengn('post_id')->references('id')->on('posts');
 
         });
     }
