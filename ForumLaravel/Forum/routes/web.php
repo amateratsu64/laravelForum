@@ -43,13 +43,16 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'], '/create_post', [PostControler::class, 'create_post'])->name('create_post');
 
     // Route::get('/topics',UserController::class, 'Listarall_topics')->name('Listarall_topics');
-    Route::get('/topics/{id}',[UserController::class, 'List_topics'])->name('List_topics');
-    Route::get('/topics/{id}/update',[UserController::class, 'Update_topics'])->name('Update_topics');
-    Route::delete('/topics/{id}/delete',[UserContrppoller::class, 'Delete_topics'])->name('Delete_topics');
-    Route::match(['get', 'post'], '/create_topics', [PostController::class, 'create_topics'])->name('create_');
+    Route::get('/topics',[TopcControler::class, 'Listll_topics'])->name('Listll_topics');
+    Route::get('/topics/list',[TopcControler::class, 'List_topics'])->name('List_topics');
+    Route::get('/topics/{id}/update',[TopcControler::class, 'Update_topics'])->name('Update_topics');
+    Route::delete('/topics/{id}/delete',[TopcControler::class, 'Delete_topics'])->name('Delete_topics');
+    Route::match(['get', 'post'], '/create_topics', [TopcControler::class, 'create_topics'])->name('create_');
     //tag
-    Route::get('/tag',[PostControler::class, 'Listll_tag'])->name('Listll_tag');
-    Route::get('/tag/list',[PostControler::class, 'List_tag'])->name('List_tag');
-    Route::get('/tag/{id}/update',[PostControler::class, 'Update_tag'])->name('Update_tag');
-    Route::delete('/tag/{id}/delete',[PostControler::class, 'Delete_post'])->name('Delete_tag');
+    Route::get('/tag',[TagContrler::class, 'Listll_tag'])->name('Listll_tag');
+    Route::get('/tag/list',[TagContrler::class, 'List_tag'])->name('List_tag');
+    Route::get('/tag/{id}/update',[TagContrler::class, 'Update_tag'])->name('Update_tag');
+    Route::delete('/tag/{id}/delete',[TagContrler::class, 'Delete_post'])->name('Delete_tag');
+    Route::match(['get', 'post'], '/create_tag', [TagContrler::class, 'create_tag'])->name('create_tag');
 });
+

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TopcControler extends Controller
 {
-    public function Listall_topics(){
+    public function Listll_topics(){
         return view('topics/Listll_topics');
     }
     public function create_topics(){

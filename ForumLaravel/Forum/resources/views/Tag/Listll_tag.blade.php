@@ -178,7 +178,7 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-        <a href="{{ url('/create_topics') }}" class="create-post-button">Criar topic</a>
+        <a href="{{ url('/create_post') }}" class="create-post-button">Criar topic</a>
     </div>
 
     <div class="container-wrapper">

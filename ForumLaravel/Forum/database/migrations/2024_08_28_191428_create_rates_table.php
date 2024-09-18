@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->boolean('rate');
+            $table->boolean('vote');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
-            $table->forengn('user_id')->references('id')->on('users');
-            $table->forengn('post_id')->references('id')->on('posts');
 
         });
     }
