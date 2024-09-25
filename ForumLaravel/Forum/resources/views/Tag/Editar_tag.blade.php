@@ -136,7 +136,7 @@
         <form >
             <div class="form-group">
                 <label for="content">tag</label>
-                <textarea id="content" name="content" required>bugs</textarea>
+                <textarea id="content" name="content" required>#mario</textarea>
             </div>
             <div class="form-buttons">
                 <button type="submit" class="btn-save">Salvar</button>

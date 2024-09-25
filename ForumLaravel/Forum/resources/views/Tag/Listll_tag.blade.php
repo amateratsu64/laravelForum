@@ -178,7 +178,7 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
-        <a href="{{ url('/create_post') }}" class="create-post-button">Criar topic</a>
+        <a href="{{ url('/create_tag') }}" class="create-post-button">Criar tag</a>
     </div>
 
     <div class="container-wrapper">
@@ -186,8 +186,8 @@
             <div class="main-content">
                 <div class="post">
                     <h3>adolf</h3>
-                    <button class="edit-button"><a href="{{ url('/topics/list') }}">Editar</a></button>
-                    <p>super mario bros</p>
+                    <button class="edit-button"><a href="{{ url('/tag/list') }}">Editar</a></button>
+                    <p>#mario</p>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@
                 <div class="post">
                     <h3>manoel</h3>
                     <button class="edit-button">Editar</button>
-                    <p>super nitendo</p>
+                    <p>#link</p>
                 </div>
             </div>
         </div>
@@ -205,7 +205,7 @@
                 <div class="post">
                     <h3>renato</h3>
                     <button class="edit-button">Editar</button>
-                    <p>link</p>
+                    <p>#snes</p>
                 </div>
             </div>
         </div>
@@ -214,7 +214,7 @@
                 <div class="post">
                     <h3>peixoto</h3>
                     <button class="edit-button">Editar</button>
-                    <p>codigos e cheat</p>
+                    <p>#bug</p>
                 </div>
             </div>
         </div>
