@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/topics/list',[TopcControler::class, 'List_topics'])->name('List_topics');
     Route::get('/topics/{id}/update',[TopcControler::class, 'Update_topics'])->name('Update_topics');
     Route::delete('/topics/{id}/delete',[TopcControler::class, 'Delete_topics'])->name('Delete_topics');
-    Route::match(['get', 'post'], '/create_topics', [TopcControler::class, 'create_topics'])->name('create_');
+    Route::match(['get', 'post'], '/create_topics', [TopcControler::class, 'create_topics'])->name('create_topics');
     //tag
     Route::get('/tag',[TagContrler::class, 'Listll_tag'])->name('Listll_tag');
     Route::get('/tag/list',[TagContrler::class, 'List_tag'])->name('List_tag');
@@ -55,4 +55,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tag/{id}/delete',[TagContrler::class, 'Delete_post'])->name('Delete_tag');
     Route::match(['get', 'post'], '/create_tag', [TagContrler::class, 'create_tag'])->name('create_tag');
 });
-

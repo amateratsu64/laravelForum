@@ -130,8 +130,13 @@
         <form action="" method="post">
             @csrf
             <div class="form-group">
-                <label for="content">nome do topic</label>
-                <textarea id="content" name="content" required></textarea>
+                <label for="titulo">titulo</label>
+                <textarea id="titulo" name="titulo" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="description">descriçao</label>
+                <textarea id="description" name="description" required></textarea>
+                @error("description") <span>{{$message}}</span> @enderror
             </div>
             <div class="form-buttons">
                 <button type="submit" class="btn-save">Criar</button>

@@ -74,6 +74,13 @@
             height: 150px;
         }
 
+        /* Ajuste do tamanho da caixa de texto do título */
+        #titulo {
+            width: 50%; /* Reduzindo a largura */
+            height: 50px; /* Reduzindo a altura */
+            resize: none; /* Impede o redimensionamento manual */
+        }
+
         .form-buttons {
             text-align: right;
         }
@@ -114,12 +121,10 @@
     </header>
 
     <nav>
-    <a href="{{ url('/user') }}">Listar usuários</a>
+        <a href="{{ url('/user') }}">Listar usuários</a>
         <a href="{{ url('/post') }}">Postagem</a>
         <a href="{{ url('/tag') }}">Tag</a>
         <a href="{{ url('/topics') }}">Topics</a>
-        <a href="{{ url('/user') }}">Listar usuários</a>
-        <a href="{{ url('/post') }}">Post</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
             <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> sair</a>
@@ -131,6 +136,10 @@
     <div class="container">
         <form action="" method="post">
             @csrf
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <textarea id="titulo" name="titulo" required></textarea>
+            </div>
             <div class="form-group">
                 <label for="content">Conteúdo da Postagem:</label>
                 <textarea id="content" name="content" required></textarea>
