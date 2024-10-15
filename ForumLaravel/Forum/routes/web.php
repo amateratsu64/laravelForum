@@ -6,6 +6,7 @@ use App\Http\Controllers\Authcontroler;
 use App\Http\Controllers\PostControler;
 use App\Http\Controllers\TopcControler;
 use App\Http\Controllers\TagContrler;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,9 @@ use App\Http\Controllers\TagContrler;
 |
 */
 
+        
 
+    
 
 Route::match (['get','post'],'/login',[Authcontroler::class,'login_user'])->name('login');
 
@@ -49,9 +52,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/topics/{id}/delete',[TopcControler::class, 'Delete_topics'])->name('Delete_topics');
     Route::match(['get', 'post'], '/create_topics', [TopcControler::class, 'create_topics'])->name('create_topics');
     //tag
-    Route::get('/tag',[TagContrler::class, 'Listll_tag'])->name('Listll_tag');
-    Route::get('/tag/list',[TagContrler::class, 'List_tag'])->name('List_tag');
-    Route::get('/tag/{id}/update',[TagContrler::class, 'Update_tag'])->name('Update_tag');
-    Route::delete('/tag/{id}/delete',[TagContrler::class, 'Delete_post'])->name('Delete_tag');
-    Route::match(['get', 'post'], '/create_tag', [TagContrler::class, 'create_tag'])->name('create_tag');
+    Route::group(['prefix' => 'tags'], function() {
+        Route::get('/create', [TagContrler::class, 'create'])->name('tags.create');
+        Route::post('/create', [TagContrler::class, 'store'])->name('tags.store');
+        Route::get('/{id}/edit', [TagContrler::class, 'edit'])->name('tags.edit');
+        Route::put('/{id}/edit', [TagContrler::class, 'update'])->name('tags.update');
+        Route::delete('/{id}/destroy', [TagContrler::class, 'destroy'])->name('tag.destroy');
+    });
+    Route::group(['prefix' => 'tags'], function() {
+        Route::get('/', [TagContrler::class, 'index'])->name('tags.index');
+        Route::get('/{id}', [TagContrler::class, 'show'])->name('tags.show');
+    });
+
+
+
+
+    Route::group(['prefix' => 'categories'], function() {
+            Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+            Route::post('/create', [CategoryController::class, 'store'])->name('categories.store');
+            Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+            Route::put('/{id}/edit', [CategoryController::class, 'update'])->name('categories.update');
+            Route::delete('/{id}/destroy', [CategoryController::class, 'destroy'])->name('categories.destroy');
+        });
+    Route::group(['prefix' => 'categories'], function() {
+            Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+            Route::get('/{id}', [CategoryController::class, 'show'])->name('categories.show');
+        });
 });

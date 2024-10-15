@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Lista de Usuários</title>
+    <title>Fórum - Categorias</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="bg-light">
 
-    <!-- Cabeçalho -->
     <header class="bg-primary text-white py-4 text-center">
-        <h1><a href="{{ route('logout') }}" class="text-white text-decoration-none">Lista de Usuários</a></h1>
+        <h1><a href="{{ url('/') }}" class="text-white text-decoration-none">Página Inicial</a></h1>
     </header>
 
-    <!-- Navegação -->
     <nav class="bg-dark py-2">
         <div class="container text-center">
-        <a href="{{ url('/user') }}" class="text-white mx-3 font-weight-bold">Listar usuários</a>
+            <a href="{{ url('/user') }}" class="text-white mx-3 font-weight-bold">Listar usuários</a>
             <a href="{{ url('/post') }}" class="text-white mx-3 font-weight-bold">Postagem</a>
             <a href="{{ url('/tags') }}" class="text-white mx-3 font-weight-bold">Tag</a>
             <a href="{{ url('/topics') }}" class="text-white mx-3 font-weight-bold">Topics</a>
@@ -31,34 +34,24 @@
         </div>
     </nav>
 
-    <!-- Conteúdo principal -->
-    <div class="container flex-grow-1 my-4">
+    <div class="container my-5">
         <div class="bg-white p-4 rounded shadow">
-            <h2 class="mb-4">Usuários</h2>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <h2>Categorias</h2>
+            <a href="{{ route('categories.create') }}" class="btn btn-secondary mb-3">Adicionar</a>
+            <ul class="list-group">
+                @foreach ($categories as $category)
+                    <li class="list-group-item">
+                        <a href="{{ route('categories.show', $category->id) }}">
+                            {{ $category->title }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 
-    <!-- Rodapé -->
-    <footer class="bg-primary text-white py-3 text-center mt-auto">
-        <p>&copy; 2024 Direito Autoral Matheus Peixoto</p>
+    <footer class="bg-primary text-white py-3 text-center fixed-bottom">
+        <p>&copy; 2024 Direito autoral Matheus Peixoto</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

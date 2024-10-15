@@ -120,10 +120,11 @@
     </header>
 
     <nav>
-    <a href="{{ url('/user') }}">Listar usuários</a>
-        <a href="{{ url('/post') }}">Postagem</a>
-        <a href="{{ url('/tag') }}">Tag</a>
-        <a href="{{ url('/topics') }}">Topics</a>
+    <a href="{{ url('/user') }}" class="text-white mx-3 font-weight-bold">Listar usuários</a>
+            <a href="{{ url('/post') }}" class="text-white mx-3 font-weight-bold">Postagem</a>
+            <a href="{{ url('/tags') }}" class="text-white mx-3 font-weight-bold">Tag</a>
+            <a href="{{ url('/topics') }}" class="text-white mx-3 font-weight-bold">Topics</a>
+            <a href="{{ url('/categories') }}" class="text-white mx-3 font-weight-bold">Categoria</a>
         @if (Auth::check())
             <a href="{{ route('List_user', ['id' => Auth::user()->id]) }}" class="login-icon"><i class="fas fa-user"></i> {{ Auth::user()->name }}</a>
             <a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> sair</a>

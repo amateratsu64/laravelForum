@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag; // Certifique-se de que o modelo Tag está importado
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TagContrler extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class TagContrler extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('tags.index', compact('tags')); // Supondo que você tenha uma view para listar as tags
+        $categories = Category::all();
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -26,7 +26,7 @@ class TagContrler extends Controller
      */
     public function create()
     {
-        return view('tags.create'); // View para criar uma nova tag
+        return view('category.create');
     }
 
     /**
@@ -38,12 +38,14 @@ class TagContrler extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:100',
+            'title' => 'required|string',
+            'description' => 'required|string',
         ]);
 
-        Tag::create($validated);
+        $category = Category::create($validated);
 
-        return redirect()->route('tags.index')->with('success', 'Tag registrada com sucesso');
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -54,8 +56,8 @@ class TagContrler extends Controller
      */
     public function show($id)
     {
-        $tag = Tag::findOrFail($id);
-        return view('tags.show', compact('tag')); // View para mostrar a tag específica
+        $category = Category::findOrFail($id);
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -66,8 +68,8 @@ class TagContrler extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::findOrFail($id);
-        return view('tags.edit', compact('tag')); // View para editar a tag
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -79,16 +81,21 @@ class TagContrler extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::findOrFail($id);
+        $category = Category::findOrFail($id);
+        if ($category) {
+            $request->validate([
+                'title' => 'required|string',
+                'description' => 'required|string',
+            ]);
+    
+            $category->title = $request->title;
+            $category->description = $request->description;
+            $category->save();
 
-        $request->validate([
-            'title' => 'required|string|max:100',
-        ]);
+        }
 
-        $tag->title = $request->title;
-        $tag->save();
+        return redirect()->route('categories.index');
 
-        return redirect()->route('tags.index')->with('success', 'Tag alterada com sucesso');
     }
 
     /**
@@ -99,7 +106,7 @@ class TagContrler extends Controller
      */
     public function destroy($id)
     {
-        Tag::findOrFail($id)->delete();
-        return redirect()->route('tags.index')->with('success', 'Tag excluída com sucesso');
+        Category::findOrFail($id)->delete();
+        return redirect()->route('categories.index');
     }
 }
