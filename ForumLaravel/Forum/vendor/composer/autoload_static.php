@@ -534,6 +534,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Authcontroler' => __DIR__ . '/../..' . '/app/Http/Controllers/Authcontroler.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\PostControler' => __DIR__ . '/../..' . '/app/Http/Controllers/PostControler.php',
         'App\\Http\\Controllers\\TagContrler' => __DIR__ . '/../..' . '/app/Http/Controllers/TagContrler.php',

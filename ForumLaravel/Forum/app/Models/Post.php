@@ -11,7 +11,13 @@ abstract class Post extends Model
     protected $fillable = [
         'photo'
     ];
-
+    
+    public function posttable()
+    {
+        return $this->morphto();
+    }
+    
+    
     public function user()
     {
         return $this->belongsTo(User::class);
