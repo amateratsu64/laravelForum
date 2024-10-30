@@ -39,7 +39,7 @@
             <h1>{{ $tag->title }}</h1>
             <p>{{ $tag->description }}</p>
             
-            <form action="{{ route('tags.destroy', $tag->id) }}" method="post">
+            <form action="{{ route('tag.destroy', $tag->id) }}" method="post">
                 @csrf
                 @method("delete")
                 <a href="{{ route('tags.edit', $tag->id) }}" type="button" class="btn btn-secondary">Editar</a>

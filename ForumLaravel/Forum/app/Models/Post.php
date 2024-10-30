@@ -9,7 +9,8 @@ abstract class Post extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'photo'
+        'photo',
+        'user_id'
     ];
     
     public function posttable()
