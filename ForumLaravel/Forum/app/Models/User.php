@@ -50,7 +50,7 @@ class User extends Authenticatable
     }
     public function rates()
     {
-        return $this->hasMany(Usaer::class);
+        return $this->hasMany(Rate::class);
     }
 
     public function isModerador()

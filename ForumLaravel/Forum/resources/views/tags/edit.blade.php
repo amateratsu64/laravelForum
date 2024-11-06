@@ -54,7 +54,7 @@
 
                 <div class="form-buttons text-right">
                     <input type="submit" value="Alterar" class="mt-4 btn btn-secondary">
-                    <button type="button" class="btn btn-light" onclick="window.location.href='{{ url('/tag') }}'">Cancelar</button>
+                    <button type="button" class="btn btn-light" onclick="window.location.href='{{ url('/tags') }}'">Cancelar</button>
                 </div>
             </form>
         </div>
