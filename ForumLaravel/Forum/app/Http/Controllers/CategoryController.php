@@ -3,110 +3,74 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Lista todas as categorias.
      */
     public function index()
     {
         $categories = Category::all();
-        return view('category.index', compact('categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Exibe o formulário para criar uma nova categoria.
      */
     public function create()
     {
-        return view('category.create');
+        return view('categories.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Armazena uma nova categoria.
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
 
-        $category = Category::create($validated);
+        Category::create($validated);
 
-
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Categoria criada com sucesso!');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('category.show', compact('category'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Exibe o formulário para editar uma categoria.
      */
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('category.edit', compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Atualiza uma categoria existente.
      */
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
-        if ($category) {
-            $request->validate([
-                'title' => 'required|string',
-                'description' => 'required|string',
-            ]);
-    
-            $category->title = $request->title;
-            $category->description = $request->description;
-            $category->save();
 
-        }
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
 
-        return redirect()->route('categories.index');
+        $category->update($validated);
 
+        return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove uma categoria.
      */
     public function destroy($id)
     {
         Category::findOrFail($id)->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Categoria excluída com sucesso!');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\Topic;
 use App\Models\Category;
@@ -33,23 +33,28 @@ class TopcControler extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'required|string|max:255',
                 'status' => 'required|integer',
-                'image' => 'required|string',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category' => 'required|exists:categories,id',
             ]);
 
+            // Salvar imagem no storage
+            $path = $request->file('photo')->store('topics', 'public');
+
+            // Criar o tópico
             $topic = Topic::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'status' => $request->status,
-                'category_id' => $request->category
+                'category_id' => $request->category,
             ]);
 
+            // Criar o post relacionado
             $topic->post()->create([
                 'user_id' => Auth::id(),
-                'image' => $request->image,
+                'image' => $path, // Caminho da imagem salva
             ]);
 
-            return redirect()->route('welcome')->with('success', 'Tópico criado com sucesso!');
+            return redirect()->route('topics.listAllTopics')->with('success', 'Tópico criado com sucesso!');
         }
     }
 
@@ -65,23 +70,49 @@ class TopcControler extends Controller
     /**
      * Atualiza as informações de um tópico.
      */
-    public function updateTopic(Request $request, $id)
+    public function editAndUpdateTopic(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'status' => 'required|integer',
-        ]);
+        $topic = Topic::with('post')->findOrFail($id);
+        $categories = Category::all();
 
-        $topic = Topic::findOrFail($id);
-        $topic->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status,
-        ]);
+        if ($request->isMethod('GET')) {
+            return view('topics.editTopic', [
+                'topic' => $topic,
+                'categories' => $categories,
+            ]);
+        } elseif ($request->isMethod('PUT')) {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
+                'status' => 'required|integer',
+                'category_id' => 'required|exists:categories,id',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-        return redirect()->route('routeListTopicById', [$topic->id])
-            ->with('message-success', 'Atualizado com sucesso');
+            // Atualizar os dados do tópico
+            $topic->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'status' => $request->status,
+                'category_id' => $request->category_id,
+            ]);
+
+            // Atualizar a imagem, se fornecida
+            if ($request->hasFile('photo')) {
+                // Excluir imagem antiga, se houver
+                if ($topic->post->image) {
+                    Storage::delete('public/' . $topic->post->image);
+                }
+
+                $path = $request->file('photo')->store('topics', 'public');
+                $topic->post->update(['image' => $path]);
+            }
+
+            return redirect()->route('topics.listAllTopics')
+                             ->with('success', 'Tópico atualizado com sucesso!');
+        }
+
+        return abort(405); // Método não permitido
     }
 
     /**
@@ -89,7 +120,14 @@ class TopcControler extends Controller
      */
     public function deleteTopic($id)
     {
-        Topic::findOrFail($id)->delete();
-        return redirect()->route('topics.listAllTopics')->with('message-success', 'Tópico excluído com sucesso');
+        $topic = Topic::findOrFail($id);
+
+        // Excluir imagem associada
+        if ($topic->post && $topic->post->image) {
+            Storage::delete('public/' . $topic->post->image);
+        }
+
+        $topic->delete();
+        return redirect()->route('topics.listAllTopics')->with('success', 'Tópico excluído com sucesso');
     }
 }

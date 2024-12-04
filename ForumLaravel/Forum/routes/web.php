@@ -45,53 +45,37 @@ Route::middleware('auth')->group(function () {
     Route::delete('/post/{id}/delete',[PostControler::class, 'Delete_post'])->name('Delete_post');
     Route::match(['get', 'post'], '/create_post', [PostControler::class, 'create_post'])->name('create_post');
 
-    // Route::get('/topics',UserController::class, 'Listarall_topics')->name('Listarall_topics');
-    Route::get(
-        '/topics',
-        [TopcControler::class, 'listAllTopics']
-    )->name('routeListAllTopics');
+    // Rota para listar todos os tópicos
+Route::get('/topics', [TopcControler::class, 'listAllTopics'])->name('topics.listAllTopics');
 
-    Route::get(
-        '/topics/{id}',
-        [TopcControler::class, 'listTopicById']
-    )->name('routeListTopicById');
+// Rota para exibir o formulário de criação de tópico (GET) ou salvar um novo tópico (POST)
+Route::match(['get', 'post'], '/topics/create', [TopcControler::class, 'createTopic'])->name('topics.createTopic');
+// Rota para exibir os detalhes de um tópico específico
+Route::get('/topics/{id}', [TopcControler::class, 'listTopicById'])->name('topics.viewTopic');
 
-    Route::put(
-        '/topics/{id}/update',
-        [TopcControler::class, 'updateTopic']
-    )->name('routeUpdateTopic');
+// Rota para exibir o formulário de edição de tópico (GET) e salvar as alterações (PUT)
+Route::match(['get', 'put'], '/topics/{id}/edit', [TopcControler::class, 'editAndUpdateTopic'])->name('editAndUpdateTopic');
 
-    Route::delete(
-        '/topics/{id}/delete',
-        [TopcControler::class, 'deleteTopic']
-    )->name('routeDeleteTopic');
 
-    Route::match(
-        ['get', 'post'],
-        '/createTopic',
-        [TopcControler::class, 'createTopic']
-    )->name('routeCreateTopic');
+// Rota para excluir um tópico
+Route::delete('/topics/{id}', [TopcControler::class, 'deleteTopic'])->name('topics.deleteTopic');
     //tag
-    Route::group(['prefix' => 'tags'], function() {
-        Route::get('/create', [TagContrler::class, 'create'])->name('tags.create');
-        Route::post('/create', [TagContrler::class, 'store'])->name('tags.store');
-        Route::get('/{id}/edit', [TagContrler::class, 'edit'])->name('tags.edit');
-        Route::put('/{id}/edit', [TagContrler::class, 'update'])->name('tags.update');
-        Route::delete('/{id}/destroy', [TagContrler::class, 'destroy'])->name('tag.destroy');
-    });
-    Route::group(['prefix' => 'tags'], function() {
+    Route::prefix('tags')->group(function () {
         Route::get('/', [TagContrler::class, 'index'])->name('tags.index');
-        Route::get('/{id}', [TagContrler::class, 'show'])->name('tags.show');
+        Route::get('/create', [TagContrler::class, 'create'])->name('tags.create');
+        Route::post('/store', [TagContrler::class, 'store'])->name('tags.store');
+        Route::match(['get', 'put'], '/{id}/edit', [TagContrler::class, 'edit'])->name('tags.edit');
+        Route::match(['get', 'put'], '/{id}/update', [TagContrler::class, 'update'])->name('tags.update');
+        Route::delete('/{id}/delete', [TagContrler::class, 'destroy'])->name('tags.destroy');
     });
-    Route::group(['prefix' => 'categories'], function() {
-        Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-        Route::post('/create', [CategoryController::class, 'store'])->name('categories.store');
-        Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-        Route::put('/{id}/edit', [CategoryController::class, 'update'])->name('categories.update');
-        Route::delete('/{id}/destroy', [CategoryController::class, 'destroy'])->name('categories.destroy');
-    });
-Route::group(['prefix' => 'categories'], function() {
-        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-        Route::get('/{id}', [CategoryController::class, 'show'])->name('categories.show');
-    });
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::match(['get', 'put'], '/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::match(['get', 'put'], '/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/{id}/delete', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
+
 });

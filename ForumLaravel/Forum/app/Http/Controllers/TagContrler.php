@@ -2,38 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag; // Certifique-se de que o modelo Tag está importado
-use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagContrler extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Lista todas as tags.
      */
     public function index()
     {
         $tags = Tag::all();
-        return view('tags.index', compact('tags')); // Supondo que você tenha uma view para listar as tags
+        return view('tags.index', compact('tags'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Exibe o formulário para criar uma nova tag.
      */
     public function create()
     {
-        return view('tags.create'); // View para criar uma nova tag
+        return view('tags.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Armazena uma nova tag.
      */
     public function store(Request $request)
     {
@@ -43,63 +35,40 @@ class TagContrler extends Controller
 
         Tag::create($validated);
 
-        return redirect()->route('tags.index')->with('success', 'Tag registrada com sucesso');
+        return redirect()->route('tags.index')->with('success', 'Tag criada com sucesso!');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $tag = Tag::findOrFail($id);
-        return view('tags.show', compact('tag')); // View para mostrar a tag específica
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Exibe o formulário para editar uma tag.
      */
     public function edit($id)
     {
         $tag = Tag::findOrFail($id);
-        return view('tags.edit', compact('tag')); // View para editar a tag
+        return view('tags.edit', compact('tag'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Atualiza uma tag existente.
      */
     public function update(Request $request, $id)
     {
         $tag = Tag::findOrFail($id);
 
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:100',
         ]);
 
-        $tag->title = $request->title;
-        $tag->save();
+        $tag->update($validated);
 
-        return redirect()->route('tags.index')->with('success', 'Tag alterada com sucesso');
+        return redirect()->route('tags.index')->with('success', 'Tag atualizada com sucesso!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Remove uma tag.
      */
     public function destroy($id)
     {
         Tag::findOrFail($id)->delete();
-        return redirect()->route('tags.index')->with('success', 'Tag excluída com sucesso');
+        return redirect()->route('tags.index')->with('success', 'Tag excluída com sucesso!');
     }
 }
