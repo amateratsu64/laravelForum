@@ -33,12 +33,9 @@ class TopcControler extends Controller
                 'title' => 'required|string|max:255',
                 'description' => 'required|string|max:255',
                 'status' => 'required|integer',
-                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category' => 'required|exists:categories,id',
             ]);
-
-            // Salvar imagem no storage
-            $path = $request->file('photo')->store('topics', 'public');
 
             // Criar o tópico
             $topic = Topic::create([
@@ -48,11 +45,17 @@ class TopcControler extends Controller
                 'category_id' => $request->category,
             ]);
 
-            // Criar o post relacionado
-            $topic->post()->create([
+            // Criar o post relacionado, incluindo imagem se fornecida
+            $data = [
                 'user_id' => Auth::id(),
-                'image' => $path, // Caminho da imagem salva
-            ]);
+            ];
+
+            if ($request->hasFile('photo')) {
+                $path = $request->file('photo')->store('topics', 'public');
+                $data['image'] = $path;
+            }
+
+            
 
             return redirect()->route('topics.listAllTopics')->with('success', 'Tópico criado com sucesso!');
         }

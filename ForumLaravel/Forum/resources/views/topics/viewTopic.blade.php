@@ -8,9 +8,6 @@
         <p><strong>Status:</strong> {{ $topic->status ? 'Ativo' : 'Inativo' }}</p>
         <p><strong>Categoria:</strong> {{ $topic->category->title }}</p>
         <p><strong>Imagem:</strong></p>
-        @if ($topic->post->image)
-            <img src="{{ asset('storage/' . $topic->post->image) }}" alt="Imagem do tópico" class="img-fluid mt-3">
-        @endif
     </div>
 </div>
 @endsection

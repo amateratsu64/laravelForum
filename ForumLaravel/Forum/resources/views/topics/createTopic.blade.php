@@ -40,8 +40,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="photo">Imagem</label>
-                <input type="file" class="form-control" id="photo" name="photo" required>
+                <label for="photo">Imagem (opcional)</label>
+                <input type="file" class="form-control" id="photo" name="photo">
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
