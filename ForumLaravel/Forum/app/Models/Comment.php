@@ -10,14 +10,9 @@ class Comment extends Post
     use HasFactory;
 
     protected $fillable = [
-        'content'
+        'content',
+        'topic_id', // Adicione o campo topic_id
     ];
-
-    // Relacionamento Polimórfico
-    public function post()
-    {
-        return $this->morphOne(Post::class, 'postable');
-    }
 
     public function topic()
     {
