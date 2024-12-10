@@ -11,7 +11,9 @@ class Post extends Model
 
     protected $fillable = [
         'image',
-        'user_id'
+        'user_id',
+        'topic_id', // Se você também estiver ligando a comentários a tópicos
+        'post_id'
     ];
 
     // Relacionamento Polimórfico

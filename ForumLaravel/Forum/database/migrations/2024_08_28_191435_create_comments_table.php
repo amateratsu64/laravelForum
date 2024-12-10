@@ -11,16 +11,19 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('topic_id');
-            $table->text('content');
-            $table->foreign('topic_id')->references('id')->on('topics');
-            $table->timestamps();
-        });
-    }
+    // database/migrations/2024_08_28_191435_create_comments_table.php
+public function up()
+{
+    Schema::create('comments', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('topic_id')->nullable();
+        $table->unsignedBigInteger('post_id'); 
+        $table->text('content');
+        $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
+        $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade'); // Adicione esta linha
+        $table->timestamps();
+    });
+}
 
 
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\Comment;
 use App\Models\Category;
 
 class TopcControler extends Controller
@@ -25,41 +26,41 @@ class TopcControler extends Controller
      */
     public function createTopic(Request $request)
     {
-        if ($request->isMethod('GET')) {
-            $categories = Category::all();
-            return view('topics.createTopic', ['categories' => $categories]);
-        } else {
-            $request->validate([
-                'title' => 'required|string|max:255',
-                'description' => 'required|string|max:255',
-                'status' => 'required|integer',
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'category' => 'required|exists:categories,id',
-            ]);
-
-            // Criar o tópico
-            $topic = Topic::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'status' => $request->status,
-                'category_id' => $request->category,
-            ]);
-
-            // Criar o post relacionado, incluindo imagem se fornecida
-            $data = [
-                'user_id' => Auth::id(),
-            ];
-
-            if ($request->hasFile('photo')) {
-                $path = $request->file('photo')->store('topics', 'public');
-                $data['image'] = $path;
-            }
-
-            
-
-            return redirect()->route('topics.listAllTopics')->with('success', 'Tópico criado com sucesso!');
-        }
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+    
+        $topic = Topic::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+        ]);
+    
+        // Criar o post relacionado
+        $post = new Post();
+        $post->user_id = Auth::id();
+        $topic->post()->save($post);
+    
+        return redirect()->route('topics.listAllTopics')->with('success', 'Tópico criado com sucesso!');
     }
+
+    public function storeComment(Request $request, $topicId)
+{
+    $request->validate([
+        'content' => 'required|string|max:1000',
+    ]);
+
+    $comment = new Comment();
+    $comment->content = $request->content;
+    $comment->topic_id = $topicId; // Associar o comentário ao tópico
+    $comment->post_id = $request->post_id; // Associar o comentário ao post
+    $comment->save();
+
+    return redirect()->back()->with('success', 'Comentário adicionado com sucesso!');
+}
 
     /**
      * Exibe os detalhes de um tópico específico.
